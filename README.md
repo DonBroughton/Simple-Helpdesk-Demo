@@ -10,6 +10,7 @@ This example project implements Laravel, basic auth, forms & validation.
 Complete the following steps in order to get it working:
 
 - After cloning the project, rename the .env.example to .env being sure to update your MySQL database details, App Name and App URL details if required.
+Keep Application's APP_ENV set to `local` to allow Seeding to occur. 
 
 ## License
 
