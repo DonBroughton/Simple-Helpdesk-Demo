@@ -15,4 +15,9 @@ class Ticket extends Model
     {
         return $this->hasMany(TicketReply::class);
     }
+
+    public function priority()
+    {
+        return $this->belongsTo(TicketPriority::class);
+    }
 }

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class TicketPriority extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'priority_id');
+    }
 }
