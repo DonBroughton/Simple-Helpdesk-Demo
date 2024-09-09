@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         // Create an End-User
         User::factory()->create([
-            'name' => 'User',
+            'name' => 'User Name',
             'email' => 'user@example.com',
             'password' => Hash::make('password'),
             'is_admin' => false,
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
 
         // Create an Admin User
         User::factory()->create([
-            'name' => 'Admin',
+            'name' => 'Admin Name',
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
             'is_admin' => true,
