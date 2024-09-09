@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TicketController;
 
 Route::view('/', 'home');
+Route::resource('ticket', TicketController::class);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
