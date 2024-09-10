@@ -17,11 +17,17 @@
                             @csrf
                             <div class="flex flex-col">
                                 <label class="select-none" for="title">Title:<span class="text-red-500">*</span></label>
-                                <input class="text-gray-800" name="title" id="title" type="text">
+                                <input class="text-gray-800" name="title" id="title" type="text" required>
+                                @if ($errors->has('title'))
+                                    <span class="text-red-500">{{ $errors->first('title') }}</span>
+                                @endif
                             </div>
                             <div class="flex flex-col">
                                 <label class="select-none" for="description">Please describe your support ticket in detail:<span class="text-red-500">*</span></label>
-                                <textarea class="text-gray-800" id="description" name="description" rows="4" cols="50"></textarea>
+                                <textarea class="text-gray-800" id="description" name="description" rows="4" cols="50" required></textarea>
+                                @if ($errors->has('description'))
+                                    <span class="text-red-500">{{ $errors->first('description') }}</span>
+                                @endif
                             </div>
                             <div class="flex flex-col">
                                 <label class="select-none" for="priority">Priority:<span class="text-red-500">*</span></label>
