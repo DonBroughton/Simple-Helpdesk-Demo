@@ -55,7 +55,7 @@ class TicketController extends Controller
 
         $request->session()->flash('status', 'Thank you, your ticket ticket has been submitted.');
 
-        return to_route('dashboard');
+        return to_route('ticket.index');
     }
 
     /**
