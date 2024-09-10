@@ -14,6 +14,8 @@ class TicketReplyController extends Controller
             'body'  =>  $request->validated('reply'),
         ]);
 
+        $request->session()->flash('status', 'Thank you, your reply has been added.');
+
         return redirect()->back();
     }
 }
