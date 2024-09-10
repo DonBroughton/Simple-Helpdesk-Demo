@@ -33,7 +33,7 @@
                                 <label class="select-none" for="priority">Priority:<span class="text-red-500">*</span></label>
                                 <select class="text-gray-800" name="priority" id="priority">
                                     @foreach($priorities as $priority)
-                                        <option value="{{ Str::lcfirst($priority->name) }}">{{ $priority->name }}</option>
+                                        <option class="text-white bg-{{ $priority->color }}" value="{{ Str::lcfirst($priority->name) }}">{{ $priority->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

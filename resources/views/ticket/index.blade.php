@@ -27,12 +27,13 @@
                                     <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
                                         <thead>
                                         <tr>
-                                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">#</th>
+                                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500" title="Your Support Ticket Number">#</th>
                                             @if(auth()->user()->is_admin)<th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">User</th>@endif
                                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Title</th>
                                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Description</th>
                                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Priority</th>
                                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Status</th>
+                                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Created</th>
                                             <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Action</th>
                                         </tr>
                                         </thead>
@@ -42,9 +43,10 @@
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $ticket->id }}</td>
                                             @if(auth()->user()->is_admin)<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $ticket->user->name }}</td>@endif
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ Str::of($ticket->title)->take(40) . ((Str::length($ticket->title) > 40) ? ' ...' : '') }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ Str::of($ticket->description)->take(40) . ((Str::length($ticket->description) > 40) ? ' ...' : '') }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"><span class="text-white bg-orange-600 px-2 py-1 rounded-md">{{ $ticket->priority->name }}</span></td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200" title="{{ $ticket->description }}">{{ Str::of($ticket->description)->take(40) . ((Str::length($ticket->description) > 40) ? ' ...' : '') }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"><span class="text-white bg-{{ $ticket->priority->color }} px-2 py-1 rounded-md">{{ $ticket->priority->name }}</span></td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $ticket->is_open ? 'Open' : 'Closed' }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200" title="{{ $ticket->created_at->format('m/d/Y H:i') }}">{{ $ticket->created_at->diffForHumans() }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                                 <a href="{{ route('ticket.show', [$ticket]) }}"
                                                    type="button"

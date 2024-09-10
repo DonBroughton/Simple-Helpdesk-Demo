@@ -16,15 +16,19 @@ class TicketPrioritySeeder extends Seeder
         $priorities = [
             [
                 'name'  =>  'Critical',
+                'color' => 'violet-800'
             ],
             [
                 'name'  =>  'High',
+                'color' => 'red-800'
             ],
             [
                 'name'  =>  'Medium',
+                'color' => 'orange-800'
             ],
             [
                 'name'  =>  'Low',
+                'color' => 'green-800'
             ],
         ];
 
