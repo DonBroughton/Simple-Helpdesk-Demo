@@ -14,9 +14,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create an End-User
+        // Create a Primary User
         User::factory()->create([
-            'name' => 'User Name',
+            'name' => 'User One',
             'email' => 'user@example.com',
             'password' => Hash::make('password'),
             'is_admin' => false,
@@ -28,6 +28,14 @@ class UserSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
             'is_admin' => true,
+        ]);
+
+        // Create a Secondary User
+        User::factory()->create([
+            'name' => 'User Two',
+            'email' => 'user2@example.com',
+            'password' => Hash::make('password'),
+            'is_admin' => false,
         ]);
     }
 }

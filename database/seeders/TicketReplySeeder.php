@@ -17,7 +17,7 @@ class TicketReplySeeder extends Seeder
             [
                 'user_id'  =>  2,
                 'ticket_id'  =>  1,
-                'body' => 'Thanks! That is a bug, we have fixed it, closing this support ticket.',
+                'body' => 'Thanks! That is a bug, we have fixed it, closing this ticket ticket.',
                 'created_at' => now()->subDays(6),
                 'updated_at' => now()->subDays(6),
             ],

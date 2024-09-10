@@ -17,7 +17,7 @@ class TicketSeeder extends Seeder
             [
                 'user_id'  =>  '1',
                 'title'  =>  'First Support Ticket',
-                'description' => 'I think I have discovered a bug. It happens when I...',
+                'description' => 'I think I have discovered a bug. It happens when I click the menu on the home page',
                 'priority_id' => 2, // high
                 'is_open'  =>  false, // this ticket is closed
                 'created_at' => now()->subDays(7),
@@ -26,7 +26,7 @@ class TicketSeeder extends Seeder
             [
                 'user_id'  =>  '1',
                 'title'  =>  'Second Support Ticket',
-                'description' => 'I have lost all my work...',
+                'description' => 'I have lost all my work!',
                 'priority_id' => 1, // critical
                 'is_open'  =>  true, // this ticket is open
                 'created_at' => now()->subDays(4),
@@ -35,8 +35,17 @@ class TicketSeeder extends Seeder
             [
                 'user_id'  =>  '1',
                 'title'  =>  'Third Support Ticket',
-                'description' => 'I have a suggestion for a new feature...',
+                'description' => 'I have a suggestion for a new feature',
                 'priority_id' => 4, // low
+                'is_open'  =>  true, // this ticket is open
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id'  =>  '3',
+                'title'  =>  'This ticket was created by a secondary user',
+                'description' => 'This is a sample body content for a ticket issue.',
+                'priority_id' => 1, // low
                 'is_open'  =>  true, // this ticket is open
                 'created_at' => now(),
                 'updated_at' => now(),

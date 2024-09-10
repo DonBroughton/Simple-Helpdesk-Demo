@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TicketStoreRequest;
+use App\Http\Requests\TicketUpdateRequest;
 use App\Models\Ticket;
 use App\Models\TicketPriority;
-use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
@@ -14,7 +14,17 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        // Admins see all Tickets and Associated User, Ticket owners only see Tickets they have created
+        if (auth()->user()->is_admin) {
+            $tickets = Ticket::with('priority', 'user')->get();
+        }
+        else {
+            $tickets = Ticket::where('user_id', auth()->user()->id)
+                ->with('priority')
+                ->get();
+        }
+
+        return view('ticket.index', compact('tickets'));
     }
 
     /**
@@ -24,7 +34,7 @@ class TicketController extends Controller
     {
         $priorities = TicketPriority::all();
 
-        return view('support.create')->with([
+        return view('ticket.create')->with([
             'priorities'  =>  $priorities,
         ]);
     }
@@ -43,7 +53,7 @@ class TicketController extends Controller
             'priority_id'  =>  $priority->id,
         ]);
 
-        $request->session()->flash('status', 'Thank you, your support ticket has been submitted.');
+        $request->session()->flash('status', 'Thank you, your ticket ticket has been submitted.');
 
         return to_route('dashboard');
     }
@@ -53,7 +63,16 @@ class TicketController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ticket = Ticket::where('id', $id)
+            ->with(['priority', 'replies', 'replies.user'])
+            ->firstOrFail();
+
+        // Only Ticket owners and Admins can see Tickets
+        if (auth()->user()->id !== $ticket->user_id && !auth()->user()->is_admin) {
+            abort(403);
+        }
+
+        return view('ticket.show', compact('ticket'));
     }
 
     /**
@@ -66,10 +85,21 @@ class TicketController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @param TicketUpdateRequest $request
+     * @param string $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, string $id)
+    public function update(TicketUpdateRequest $request, string $id)
     {
-        //
+        if ($request->get('status') == 0){
+            $ticket = Ticket::where('id', $id)->firstOrFail();
+            $ticket->is_open = 0;
+            $ticket->save();
+
+            $request->session()->flash('status', 'Ticket#' . $ticket->id . " was marked as CLOSED.");
+        }
+
+        return to_route('ticket.index');
     }
 
     /**
