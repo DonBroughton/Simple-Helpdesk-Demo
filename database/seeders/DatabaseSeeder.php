@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Seeding is only required in a local environment as it contains weak user passwords
-        if (App::environment('local')) {
+        if (App::environment('local') || App::environment('testing')) {
             $this->call([
                 UserSeeder::class,
                 TicketPrioritySeeder::class,
