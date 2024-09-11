@@ -17,6 +17,8 @@
                    href="{{ route('ticket.create') }}">
                     New Support Ticket
                 </a>
+            @else
+                <div data-name="placeholder-for-layout" class="opacity-0"></div>
             @endif
         </div>
     </x-slot>
