@@ -19,6 +19,8 @@ Keep Application's APP_ENV set to `local` to allow Seeding to occur.
 
 - Three user profiles are included as part of the test data **user@example.com** / **user2@example.com** and **admin@example.com**. The passwords for all three users is: **password**
 
+- There is a test-suite for Tickets, this can be run through the command-line command: `php .\vendor\bin\phpunit .\tests\Feature`
+
 ## License
 
 This software is licensed under the [MIT license](https://opensource.org/licenses/MIT).
